@@ -1,5 +1,3 @@
-package assignments;
-
 public class GroceryItemOrder {
     private String name;
     private int quantity;
