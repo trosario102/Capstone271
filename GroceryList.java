@@ -1,5 +1,3 @@
-package assignments;
-
 public class GroceryList {
 //    Create a GroceryItemOrder array
     private GroceryItemOrder[] list;
