@@ -1,5 +1,3 @@
-package assignments;
-
 public class GroceryItem extends GroceryItemOrder{
     private String name;
 
