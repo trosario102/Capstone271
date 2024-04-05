@@ -25,18 +25,18 @@ public class Student extends Person implements Comparable<Student> {
      */
     public void addCourse(Course course) {
         if (!myCourseList.contains(course) && course != null && myCourseList.size() <= course.getMaxCapacity()) {
-            if (course.getCourseRoster().size() <= course.getMaxEnrollment()) {
+            if (course.getRegistered().size() <= course.getMaxCapacity()) {
                 myCourseList.add(course);
-                course.enroll(this);
+                course.addStudent(this);
             }
-            course.enroll(this);
+            course.addStudent(this);
         }
     }
 
     public void dropCourse(Course course) {
         if (myCourseList.contains(course)) {
             myCourseList.remove(course);
-            course.unenroll(this);
+            course.dropStudent(this);
         }
     }
 
@@ -55,6 +55,7 @@ public class Student extends Person implements Comparable<Student> {
         return result;
     }
 
+    /*
     @Override
     public void setGroceryBudget(double amount) {
         super.setGroceryBudget(amount);
@@ -69,4 +70,5 @@ public class Student extends Person implements Comparable<Student> {
     public double calculateDiscount(GroceryList list) {
         return super.calculateDiscount(list);
     }
+}*/
 }

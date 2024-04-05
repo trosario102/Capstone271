@@ -10,8 +10,14 @@ public class GroceryStoreContainer {
     }
 
     // Method to add a new grocery store to the container
-    public void addGroceryStore(String storeName, GroceryStore store) {
-        groceryStores.put(storeName, store);
+    public boolean addGroceryStore(String storeName) {
+        if(!groceryStores.containsKey(storeName)) {
+            GroceryStore store = new GroceryStore(storeName);
+            groceryStores.put(storeName, store);
+            return true;
+        } else{
+            return false;
+        }
     }
 
     // Method to remove a grocery store from the container

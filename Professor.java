@@ -8,8 +8,8 @@ public class Professor extends Person {
         this.subject = subject;
     }
 
-    @Override
-    public void setGroceryBudget(double amount) {
+//    @Override
+ /*   public void setGroceryBudget(double amount) {
         super.setGroceryBudget(amount);
     }
 
@@ -21,5 +21,5 @@ public class Professor extends Person {
     @Override
     public double calculateDiscount(GroceryList list) {
         return super.calculateDiscount(list);
-    }
+    }*/
 }
