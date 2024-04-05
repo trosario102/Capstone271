@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-/*
+
 public class PersonRegistry implements User {
     private Map<String, Person> registeredPeople;
 
@@ -32,7 +32,7 @@ public class PersonRegistry implements User {
         return result;
     }
 
-    public boolean selectGroceryStore(String storeName, GroceryStoresLists storesLists) {
+    public boolean selectGroceryStore(String storeName, GroceryStoreContainer storesLists) {
         GroceryStore store = storesLists.getGroceryStore(storeName);
         return store != null;
     }
@@ -40,10 +40,10 @@ public class PersonRegistry implements User {
 
     @Override
     public void addGroceryItems(String itemName, int quantity, GroceryStore store, GroceryList list) {
-        for (GroceryItem item : store.getGroceryItems()) {
-            if (item.getItemName().equals(itemName)) {
-                GroceryItemOrder itemOrder = new GroceryItemOrder(itemName, quantity, item.getItemCost());
-                list.add(itemOrder);
+        for (GroceryItem item : store.getItemName()) {
+            if (item.getItem().equals(itemName)) {
+                GroceryItemOrder itemOrder = new GroceryItemOrder(itemName, quantity, item.getPricePerUnit());
+                list.addItem(itemOrder);
             }
         }
     }
@@ -65,4 +65,3 @@ public class PersonRegistry implements User {
     }
 }
 
- */

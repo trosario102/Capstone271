@@ -4,11 +4,13 @@ import java.util.List;
 public class Student extends Person implements Comparable<Student> {
     private int id;
     private List<Course> myCourseList;
+    private List<Course> myWaitList;
 
     public Student(String firstName, String familyName, int id) {
         super(firstName, familyName);
         this.id = id;
         this.myCourseList = new LinkedList<>();
+        this.myWaitList = new LinkedList<>();
     }
 
     public int getID() {
@@ -54,7 +56,18 @@ public class Student extends Person implements Comparable<Student> {
         }
         return result;
     }
+    public boolean addToWaitList(Course c) {
+        myWaitList.add(c);
+        return true;
+    }
 
+    public boolean dropFromWaitList(Course c) {
+        if (myWaitList.contains(c)) {
+            myWaitList.remove(c);
+            return true;
+        }
+        return false;
+    }
     /*
     @Override
     public void setGroceryBudget(double amount) {

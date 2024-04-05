@@ -4,8 +4,8 @@ public class CourseRegistry {
     private Iterator<Student> nextWaitListStudent;
 
     public CourseRegistry(Course course) {
-        this.nextStudent = course.getCourseRoster().iterator();
-        this.nextWaitListStudent = course.getCourseWaitList().iterator();
+        this.nextStudent = course.getRegistered().iterator();
+        this.nextWaitListStudent = course.getWaitListed().iterator();
     }
 
     /*
@@ -45,8 +45,8 @@ public class CourseRegistry {
      * return true if the Student contains in the course else return false
      */
     public boolean contains(Student student, Course course) {
-        boolean studentInRoster = course.getCourseRoster().contains(student);
-        boolean studentInWaitList = course.getCourseWaitList().contains(student);
+        boolean studentInRoster = course.getRegistered().contains(student);
+        boolean studentInWaitList = course.getWaitListed().contains(student);
         return studentInRoster || studentInWaitList;
     }
 
@@ -56,8 +56,8 @@ public class CourseRegistry {
      * return true if two students are in the same course else return false
      */
     public boolean equals(Student s1, Student s2, Course course) {
-        boolean s1InRoster = course.getCourseRoster().contains(s1);
-        boolean s2InRoster = course.getCourseRoster().contains(s2);
+        boolean s1InRoster = course.getRegistered().contains(s1);
+        boolean s2InRoster = course.getRegistered().contains(s2);
         return s1InRoster == s2InRoster;
     }
 }

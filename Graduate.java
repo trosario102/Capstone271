@@ -25,16 +25,6 @@ public class Graduate extends Student {
     }
 
     @Override
-    public void setGroceryBudget(double amount) {
-        super.setGroceryBudget(amount);
-    }
-
-    @Override
-    public double adjustGroceryBudget(double amount) {
-        return super.adjustGroceryBudget(amount);
-    }
-
-    @Override
     public double calculateDiscount(GroceryList list) {
         return super.calculateDiscount(list) * 0.85; // 15% grocery discount for graduates
     }

@@ -1,5 +1,5 @@
 public interface User {
-    public boolean selectGroceryStore(String storeName, GroceryStoresLists storesLists);
+    public boolean selectGroceryStore(String storeName, GroceryStoreContainer storesLists);
     // public GroceryList createGroceryList(String listName);
     // public boolean hasGroceryList(String listName); // returns true if a grocery list exists for a person else return false
     // public List<GroceryItemOrder> getGroceryList(String listName);
