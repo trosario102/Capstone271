@@ -1,7 +1,7 @@
 public class GroceryItemOrder extends GroceryItem{
     private int quantity;
 
-    public GroceryItemOrder(String name, double pricePerUnit, int quantity){
+    public GroceryItemOrder(String name, int quantity, double pricePerUnit){
         super(name, pricePerUnit);
         this.quantity = quantity;
     }

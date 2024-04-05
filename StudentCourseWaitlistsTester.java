@@ -12,9 +12,9 @@ public class StudentCourseWaitlistsTester {
         Student s8 = new Student("Umayma", "Raquib", 531456);
         Student s9 = new Student("Harry", "Berry", 573764);
 
-        Course c1 = new Course("Comp", 271, "Data Structures I", 3);
-        Course c2 = new Course("Math", 212, "Linear Algebra", 3);
-        Course c3 = new Course("Stat", 203, "Intro to Statistics", 3);
+        Course c1 = new Course("Comp", 271, "Data Structures I", 3, 4);
+        Course c2 = new Course("Math", 212, "Linear Algebra", 3, 2);
+        Course c3 = new Course("Stat", 203, "Intro to Statistics", 3, 4);
 
 
         s1.addCourse(c1);
@@ -35,8 +35,8 @@ public class StudentCourseWaitlistsTester {
         s2.dropCourse(c1);
 
         CourseRegistry courseRegistry = new CourseRegistry(c1);
-        System.out.println("Registered Students in " + c1.getCourseTitle() +  "\n" + courseRegistry.findRegisteredStudents(c1));
-        System.out.println("WaitListed Students in " + c1.getCourseTitle() + "\n" + courseRegistry.findWaitListStudents(c1));
+        System.out.println("Registered Students in " + c1.getTitle() +  "\n" + courseRegistry.findRegisteredStudents(c1));
+        System.out.println("WaitListed Students in " + c1.getTitle() + "\n" + courseRegistry.findWaitListStudents(c1));
         System.out.println("Mohammed Khursiwala in Comp 271: " + courseRegistry.contains(s1, c1)); // true
         System.out.println("Does Mohammed Khursiwala & John Johnson are in the same course? " + courseRegistry.equals(s1, s2, c1)); // true
     }
