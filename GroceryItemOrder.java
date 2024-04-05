@@ -1,27 +1,16 @@
-public class GroceryItemOrder {
-    private String name;
+public class GroceryItemOrder extends GroceryItem{
     private int quantity;
-    private double pricePerUnit;
 
-    public GroceryItemOrder(String name, int quantity, double pricePerUnit){
-        this.name = name;
+    public GroceryItemOrder(String name, double pricePerUnit, int quantity){
+        super(name, pricePerUnit);
         this.quantity = quantity;
-        this.pricePerUnit = pricePerUnit;
     }
 
-//    return the item's quantity price per unit.
-    public double getCost(){
-        return quantity * pricePerUnit;
-    }
-
-//    return the name by creating an accessor method for it.
-    public String getName(){
-        return this.name;
-    }
-
-//    return the quantity of each list
     public int getQuantity(){
         return quantity;
     }
 
+    public double getPricePerQuantity(){
+        return quantity * super.getPricePerUnit();
+    }
 }

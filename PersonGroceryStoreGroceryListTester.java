@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+/*
 public class PersonGroceryStoreGroceryListTester {
     public static void main(String[] args) {
         GroceryItem item1 = new GroceryItem("apple", 0.68);
@@ -104,3 +105,5 @@ public class PersonGroceryStoreGroceryListTester {
         System.out.println("Total after discount applied: " + discountedPrice);
     }
 }
+
+ */

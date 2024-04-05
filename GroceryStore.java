@@ -1,45 +1,54 @@
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class GroceryStore {
-    private String name;
-    private Map<GroceryItemOrder, Double> itemPrices;
+    private String storeName;
+    private List<GroceryItem> groceryItems;
+    private Map<String, GroceryStoreContainer> groceryStores;
 
-    public GroceryStore(String name) {
-        this.name = name;
-        this.itemPrices = new HashMap<>();
+    public GroceryStore(String storeName) {
+        this.storeName = storeName;
+        this.groceryItems = new LinkedList<>();
+        this.groceryStores = new HashMap<>();
     }
 
-    // Method to add a new grocery item with its price to the store
-    public void addItem(GroceryItem item, double price) {
-        itemPrices.put(item, price);
+    public void addItem(GroceryItem item) {
+        groceryItems.add(item);
     }
 
-    // Method to remove a grocery item from the store
     public void removeItem(GroceryItem item) {
-        itemPrices.remove(item);
+        groceryItems.remove(item);
     }
 
-    // Method to get the price of a specific grocery item
-    public double getPrice(GroceryItem item) {
-        return itemPrices.getOrDefault(item, 0.0);
+    public String getStoreName() {
+        return storeName;
     }
 
-    // Method to check if a grocery item exists in the store
     public boolean containsItem(GroceryItem item) {
-        return itemPrices.containsKey(item);
+        return groceryItems.contains(item);
     }
 
-    // Method to get the name of the store
-    public String getName() {
-        return name;
+    public List<GroceryItem> getItemName() {
+        return groceryItems;
     }
-    public void getGroceryStores() {
-        System.out.println("Grocery Store: " + name);
+
+    public List<GroceryItem> getItemCost() {
+        return groceryItems;
     }
-    public void getGroceryItems() {
-        System.out.println("Grocery Items: " + itemPrices);
+
+    public String toString() {
+        String result = "";
+        result += "Items at " + storeName + ":\n";
+        for (GroceryItem item : groceryItems) {
+
+            result += item.getItem() + " " + item.getPricePerUnit() + "\n";
+        }
+
+        return result;
     }
+
+
 }
 

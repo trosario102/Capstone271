@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/*
 public class PersonRegistry implements User {
     private Map<String, Person> registeredPeople;
 
@@ -63,3 +64,5 @@ public class PersonRegistry implements User {
         return discount;
     }
 }
+
+ */
