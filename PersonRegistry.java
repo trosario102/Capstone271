@@ -13,13 +13,13 @@ public class PersonRegistry implements User {
         registeredPeople.put(person.toString(), person);
     }
 
-    public Person getPerson(String firstName, String familyName) {
+    public Person getPerson(String firstName, String familyName, String sex) {
         String fullName = "";
         fullName += firstName + " " + familyName;
         if (registeredPeople.containsKey(fullName)) {
             return registeredPeople.get(fullName);
         }
-        Person newPerson = new Person(firstName, familyName);
+        Person newPerson = new Person(firstName, familyName, sex);
         addPerson(newPerson);
         return registeredPeople.get(fullName);
     }

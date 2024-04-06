@@ -2,15 +2,15 @@ public class StudentCourseWaitlistsTester {
     public static void main(String[] args) {
 
 
-        Student s1 = new Student("Mohammed", "Khursiwala", 512172);
-        Student s2 = new Student("John", "Johnson", 509221);
-        Student s3 = new Student("Mary", "John",543491);
-        Student s4 = new Student("Mark", "Mellon", 578923);
-        Student s5 = new Student("Tom", "Mellon",571122);
-        Student s6 = new Student("Mohammed", "Ahmed",567458);
-        Student s7 = new Student("Aishah", "Raquib", 568799);
-        Student s8 = new Student("Umayma", "Raquib", 531456);
-        Student s9 = new Student("Harry", "Berry", 573764);
+        Student s1 = new Student("Mohammed", "Khursiwala", "m", 512172);
+        Student s2 = new Student("John", "Johnson", "m", 509221);
+        Student s3 = new Student("Mary", "John", "f",543491);
+        Student s4 = new Student("Mark", "Mellon", "m", 578923);
+        Student s5 = new Student("Tom", "Mellon","m", 571122);
+        Student s6 = new Student("Mohammed", "Ahmed","m",567458);
+        Student s7 = new Student("Aishah", "Raquib", "f", 568799);
+        Student s8 = new Student("Umayma", "Raquib", "f",531456);
+        Student s9 = new Student("Harry", "Berry", "m",573764);
 
         Course c1 = new Course("Comp", 271, "Data Structures I", 3, 4);
         Course c2 = new Course("Math", 212, "Linear Algebra", 3, 2);

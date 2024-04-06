@@ -3,8 +3,8 @@ import java.util.List;
 public class Graduate extends Student {
     private String expectedCompletion;
 
-    public Graduate(String firstName, String familyName, int id, String expectedCompletion) {
-        super(firstName, familyName, id);
+    public Graduate(String firstName, String familyName, String sex, int id, String expectedCompletion) {
+        super(firstName, familyName, sex, id);
         this.expectedCompletion = expectedCompletion;
     }
 

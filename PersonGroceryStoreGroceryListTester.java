@@ -47,30 +47,30 @@ public class PersonGroceryStoreGroceryListTester {
         store2.addItem(item11);
         store2.addItem(item4);
 
-        Person p1 = new Person("Mohammed", "Khursiwala");
-        Person p2 = new Person("Mike", "James");
-        Person p3 = new Person("Aishah", "Raquib");
-        Person p4 = new Person("Umayma", "Raquib");
+        Person p1 = new Person("Mohammed", "Khursiwala", "m");
+        Person p2 = new Person("Mike", "James", "m");
+        Person p3 = new Person("Aishah", "Raquib", "f");
+        Person p4 = new Person("Umayma", "Raquib", "f");
 
-        Professor prof = new Professor(p2.getFirstName(), p2.getFamilyName(), "Comp", "Data Structures I");
-        Undergraduate undergrad = new Undergraduate(p1.getFirstName(), p1.getFamilyName(),512172, "freshmen");
-        Graduate grad = new Graduate(p3.getFirstName(), p3.getFamilyName(), 567128,"May 2025");
-        AtLarge at = new AtLarge(p4.getFirstName(), p4.getFamilyName(), 514766);
+        Professor prof = new Professor(p2.getFirstName(), p2.getFamilyName(), p2.getSex(), "Comp", "Data Structures I");
+        Undergraduate undergrad = new Undergraduate(p1.getFirstName(), p1.getFamilyName(), p1.getSex(), 516111,"freshmen");
+        Graduate grad = new Graduate(p3.getFirstName(), p3.getFamilyName(), p3.getSex(), 567128,"May 2025");
+        AtLarge at = new AtLarge(p4.getFirstName(), p4.getFamilyName(), p4.getSex(), 514766);
 
         PersonRegistry registry = new PersonRegistry();
         registry.addPerson(prof);
         registry.addPerson(undergrad);
         registry.addPerson(grad);
 
-
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome to Grocery Shopping App!");
-        System.out.print("Enter your first & last name: ");
+        System.out.print("Enter your first & last name & sex: ");
         String firstName = scan.next();
         String lastName = scan.next();
+        String sex = scan.next();
 
-        System.out.println("Welcome " + registry.getPerson(firstName, lastName));
+        System.out.println("Welcome " + registry.getPerson(firstName, lastName, sex));
         System.out.print("You have no grocery lists saved. Type your Grocery Store: ");
         String store = scan.next();
 
@@ -101,7 +101,7 @@ public class PersonGroceryStoreGroceryListTester {
         }
 
         System.out.println(groceryList);
-        double discountedPrice = registry.checkPersonDiscount(new Person(firstName, lastName), undergrad, grad, groceryList);
+        double discountedPrice = registry.checkPersonDiscount(new Person(firstName, lastName, sex), undergrad, grad, groceryList);
         System.out.println("Total after discount applied: " + discountedPrice);
     }
 }

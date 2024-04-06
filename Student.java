@@ -6,8 +6,8 @@ public class Student extends Person implements Comparable<Student> {
     private List<Course> myCourseList;
     private List<Course> myWaitList;
 
-    public Student(String firstName, String familyName, int id) {
-        super(firstName, familyName);
+    public Student(String firstName, String familyName, String sex, int id) {
+        super(firstName, familyName, sex);
         this.id = id;
         this.myCourseList = new LinkedList<>();
         this.myWaitList = new LinkedList<>();
