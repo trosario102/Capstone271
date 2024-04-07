@@ -1,3 +1,5 @@
+import javax.management.relation.Relation;
+import javax.management.relation.RelationNotification;
 import java.util.Scanner;
 
 
@@ -61,6 +63,7 @@ public class PersonGroceryStoreGroceryListTester {
         registry.addPerson(prof);
         registry.addPerson(undergrad);
         registry.addPerson(grad);
+        registry.addPerson(at);
 
         Scanner scan = new Scanner(System.in);
 

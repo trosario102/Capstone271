@@ -9,6 +9,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
     private Set<Relationship> pastRelationships;
     private Person mother;
     private Person father;
+    private Set<Child> children;
     private int age;
 
     public Person(String firstName, String familyName, String sex) {
@@ -18,7 +19,12 @@ public class Person implements Shopper, Child, Comparable<Person>{
         this.budget = 0;
         this.relationship = new Relationship();
         this.pastRelationships = new HashSet<>();
+        this.children = new HashSet<>();
         this.sex = sex;
+    }
+
+    public void addChild(Person p) {
+        children.add(p);
     }
 
     @Override
@@ -41,6 +47,10 @@ public class Person implements Shopper, Child, Comparable<Person>{
     }
     public double getBudget() {
         return budget; // in US Dollars
+    }
+
+    public Set<Child> getChildren() {
+        return children;
     }
     public String getFirstName() {
         return firstName;

@@ -49,6 +49,8 @@ public class Relationship {
         if ((partnerA.getSex().equals("m") && partnerB.getSex().equals("f")) || (partnerA.getSex().equals("f") && partnerB.getSex().equals("m"))) {
             Person kid = new Person(firstName, familyName, sex);
             children.add(kid);
+            partnerA.addChild(kid);
+            partnerB.addChild(kid);
             if (isFemale(partnerA)){
                 kid.setMother(partnerA);
                 kid.setFather(partnerB);
