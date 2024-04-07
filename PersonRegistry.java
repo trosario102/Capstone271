@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class PersonRegistry implements User {
@@ -13,13 +15,13 @@ public class PersonRegistry implements User {
         registeredPeople.put(person.toString(), person);
     }
 
-    public Person getPerson(String firstName, String familyName) {
+    public Person getPerson(String firstName, String familyName, String sex) {
         String fullName = "";
         fullName += firstName + " " + familyName;
         if (registeredPeople.containsKey(fullName)) {
             return registeredPeople.get(fullName);
         }
-        Person newPerson = new Person(firstName, familyName);
+        Person newPerson = new Person(firstName, familyName, sex);
         addPerson(newPerson);
         return registeredPeople.get(fullName);
     }
@@ -31,6 +33,31 @@ public class PersonRegistry implements User {
         }
         return result;
     }
+
+    public ArrayList<Person> getPaternalLine(Person p) {
+        ArrayList<Person> paternalLine = new ArrayList<>();
+
+        while (p != null && p.getFather() != null) {
+            paternalLine.add(p.getFather());
+            p = p.getFather();
+        }
+        return paternalLine;
+    }
+
+    public ArrayList<Person> getMaternalLine(Person p) {
+        ArrayList<Person> maternalLine = new ArrayList<>();
+
+        while (p != null && p.getMother() != null) {
+            System.out.println(p);
+            System.out.println(p.getMother());
+            maternalLine.add(p.getMother());
+            p = p.getMother();
+            System.out.println(p);
+            System.out.println(p.getMother());
+        }
+        return maternalLine;
+    }
+
 
     public boolean selectGroceryStore(String storeName, GroceryStoreContainer storesLists) {
         GroceryStore store = storesLists.getGroceryStore(storeName);

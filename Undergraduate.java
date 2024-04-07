@@ -3,8 +3,8 @@ import java.util.List;
 public class Undergraduate extends Student {
     private String year;
 
-    public Undergraduate(String firstName, String familyName, int id, String year) {
-        super(firstName, familyName, id);
+    public Undergraduate(String firstName, String familyName, String sex, int id, String year) {
+        super(firstName, familyName, sex, id);
         this.year = year;
     }
 
