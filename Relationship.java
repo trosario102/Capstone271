@@ -41,10 +41,21 @@ public class Relationship {
         p2.setRelationship(this);
     }
 
-    public Child createChild(String firstName, String familyName, String sex) {
+    public boolean isFemale(Person p){
+        return p.getSex().equals("f");
+    }
+
+    public Person createChild(String firstName, String familyName, String sex) {
         if ((partnerA.getSex().equals("m") && partnerB.getSex().equals("f")) || (partnerA.getSex().equals("f") && partnerB.getSex().equals("m"))) {
-            Child kid = new Child(partnerA, partnerB, firstName, familyName, sex);
+            Person kid = new Person(firstName, familyName, sex);
             children.add(kid);
+            if (isFemale(partnerA)){
+                kid.setMother(partnerA);
+                kid.setFather(partnerB);
+            } else {
+                kid.setMother(partnerB);
+                kid.setFather(partnerA);
+            }
             return kid;
         } else {
             System.out.println("Same sex partners cannot create a child.");

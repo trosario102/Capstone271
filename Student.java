@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public class Student extends Person implements Comparable<Student> {
+public class Student extends Person {
     private int id;
     private List<Course> myCourseList;
     private List<Course> myWaitList;
@@ -43,9 +43,11 @@ public class Student extends Person implements Comparable<Student> {
     }
 
     public int compareTo(Student other) {
-        String name1 = this.getFirstName() + " " + this.getFamilyName();
-        String name2 = other.getFirstName() + " " + other.getFamilyName();
-        return name1.compareTo(name2);
+        if (super.compareTo(other) == 0) {
+            return this.id - other.id;
+        } else {
+            return super.compareTo(other);
+        }
     }
 
     public String toString() {
@@ -68,20 +70,4 @@ public class Student extends Person implements Comparable<Student> {
         }
         return false;
     }
-    /*
-    @Override
-    public void setGroceryBudget(double amount) {
-        super.setGroceryBudget(amount);
-    }
-
-    @Override
-    public double adjustGroceryBudget(double amount) {
-        return super.adjustGroceryBudget(amount);
-    }
-
-    @Override
-    public double calculateDiscount(GroceryList list) {
-        return super.calculateDiscount(list);
-    }
-}*/
 }
