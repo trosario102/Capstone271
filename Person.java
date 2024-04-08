@@ -9,7 +9,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
     private Set<Relationship> pastRelationships;
     private Person mother;
     private Person father;
-    private Set<Child> children;
+    private Set<Person> children;
     private int age;
 
     public Person(String firstName, String familyName, String sex) {
@@ -49,7 +49,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
         return budget; // in US Dollars
     }
 
-    public Set<Child> getChildren() {
+    public Set<Person> getChildren() {
         return children;
     }
     public String getFirstName() {
