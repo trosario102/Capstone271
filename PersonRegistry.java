@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 public class PersonRegistry implements User {
@@ -48,14 +45,22 @@ public class PersonRegistry implements User {
         ArrayList<Person> maternalLine = new ArrayList<>();
 
         while (p != null && p.getMother() != null) {
-            System.out.println(p);
-            System.out.println(p.getMother());
             maternalLine.add(p.getMother());
             p = p.getMother();
-            System.out.println(p);
-            System.out.println(p.getMother());
         }
         return maternalLine;
+    }
+
+    public ArrayList<Person> getAllChildren(Person p) {
+        ArrayList<Person> children = new ArrayList<>();
+
+        children.addAll(p.getChildren());
+        Collections.sort(children, new Comparator<Person>(){
+            public int compare(Person p1, Person p2) {
+                return p1.getAge() - p2.getAge();
+            }
+        });
+        return children;
     }
 
 
