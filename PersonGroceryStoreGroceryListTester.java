@@ -49,10 +49,10 @@ public class PersonGroceryStoreGroceryListTester {
         store2.addItem(item11);
         store2.addItem(item4);
 
-        Person p1 = new Person("Mohammed", "Khursiwala", "m");
-        Person p2 = new Person("Mike", "James", "m");
-        Person p3 = new Person("Aishah", "Raquib", "f");
-        Person p4 = new Person("Umayma", "Raquib", "f");
+        Person p1 = new Person("Tom", "John", "m");
+        Person p2 = new Person("William", "Honig", "m");
+        Person p3 = new Person("Peter", "Murphy", "f");
+        Person p4 = new Person("Mike", "James", "f");
 
         Professor prof = new Professor(p2.getFirstName(), p2.getFamilyName(), p2.getSex(), "Comp", "Data Structures I");
         Undergraduate undergrad = new Undergraduate(p1.getFirstName(), p1.getFamilyName(), p1.getSex(), 516111,"freshmen");
@@ -74,6 +74,11 @@ public class PersonGroceryStoreGroceryListTester {
         String sex = scan.next();
 
         System.out.println("Welcome " + registry.getPerson(firstName, lastName, sex));
+        System.out.println("What do you want to do today"); 
+
+
+
+        
         System.out.print("You have no grocery lists saved. Type your Grocery Store: ");
         String store = scan.next();
 
