@@ -39,10 +39,8 @@ public class GroceryStore {
         String result = "";
         result += "Items at " + storeName + ":\n";
         for (GroceryItem item : groceryItems) {
-
             result += item.getItem() + " " + item.getPricePerUnit() + "\n";
         }
-
         return result;
     }
 }
