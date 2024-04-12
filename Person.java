@@ -82,7 +82,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
         return relationship;
     }
 
-    public String getSex(){
+    public char getSex(){
         return sex;
     }
 
