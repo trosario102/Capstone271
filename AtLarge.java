@@ -17,19 +17,4 @@ public class AtLarge extends Student {
     public void dropCourse(Course course) {
         super.dropCourse(course);
     }
-
-    @Override
-    public void setGroceryBudget(double amount) {
-        super.setGroceryBudget(amount);
-    }
-
-    @Override
-    public double adjustGroceryBudget(double amount) {
-        return super.adjustGroceryBudget(amount);
-    }
-
-    @Override
-    public double calculateDiscount(GroceryList list) {
-        return super.calculateDiscount(list);
-    }
 }
