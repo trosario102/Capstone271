@@ -50,14 +50,14 @@ public class Student extends Person {
         }
     }
 
-    public String toString() {
-        String result = "";
-        result += super.toString() + " " + id + "\n\n" + "My Course List:\n";
-        for (Course course : myCourseList) {
-            result += course;
-        }
-        return result;
-    }
+//    public String toString() {
+//        String result = "";
+//        result += super.toString() + " " + id + "\n\n" + "My Course List:\n";
+//        for (Course course : myCourseList) {
+//            result += course;
+//        }
+//        return result;
+//    }
     public boolean addToWaitList(Course c) {
         myWaitList.add(c);
         return true;

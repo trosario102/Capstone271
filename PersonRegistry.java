@@ -1,3 +1,4 @@
+import java.beans.PropertyEditor;
 import java.util.*;
 
 
@@ -9,7 +10,7 @@ public class PersonRegistry implements User {
     }
 
     public void addPerson(Person person) {
-        registeredPeople.put(person.toString(), person);
+        registeredPeople.put(person.getFirstName() + " " + person.getFamilyName(), person);
     }
 
     public Person getPerson(String firstName, String familyName, String sex) {
@@ -18,10 +19,58 @@ public class PersonRegistry implements User {
         if (registeredPeople.containsKey(fullName)) {
             return registeredPeople.get(fullName);
         }
-        Person newPerson = new Person(firstName, familyName, sex);
-        addPerson(newPerson);
-        return registeredPeople.get(fullName);
+        return makeNew(firstName, familyName, sex);
     }
+
+    public Person makeNew(String firstName, String familyName, String sex){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Hi " + firstName + "! You are not in the system.");
+        System.out.print("Are you atLarge, undergrad, graduate, professor, or a person? ");
+        String response = scan.next();
+
+        Person person;
+        int id;
+        String year;
+        switch(response.toLowerCase()) {
+            case "atlarge":
+                System.out.print("Enter your studentID: ");
+                id = scan.nextInt();
+                scan.nextLine();
+                person = new AtLarge(firstName, familyName, sex, id);
+                break;
+            case "undergrad":
+                System.out.print("Enter your studentID: ");
+                id = scan.nextInt();
+                scan.nextLine();
+                System.out.print("Enter your year: ");
+                year = scan.nextLine();
+                person = new Undergraduate(firstName, familyName, sex, id, year);
+                break;
+            case "graduate":
+                System.out.print("Enter your studentID: ");
+                id = scan.nextInt();
+                scan.nextLine();
+                System.out.print("Enter your expected completed date: ");
+                year = scan.nextLine();
+                person = new Graduate(firstName, familyName, sex, id, year);
+                break;
+            case "professor":
+                System.out.print("Enter your department & subject: ");
+                String dept = scan.next();
+                String subject = scan.next();
+                person = new Professor(firstName, familyName, sex, dept, subject);
+                break;
+            default:
+                person = new Person(firstName, familyName, sex);
+                System.out.println("im running default");
+                break;
+        }
+
+        addPerson(person);
+        return person;
+
+    }
+
 
     public String toString() {
         String result = "";
@@ -81,19 +130,8 @@ public class PersonRegistry implements User {
     }
 
     @Override
-    public double checkPersonDiscount(Person person, Undergraduate undergrad, Graduate grad, GroceryList list) {
-        double discount;
-        if (person.getFirstName().equals(undergrad.getFirstName()) &&
-                person.getFamilyName().equals(undergrad.getFamilyName())) {
-            discount = undergrad.calculateDiscount(list);
-            return discount;
-        } else if (person.getFirstName().equals(grad.getFirstName()) &&
-                person.getFamilyName().equals(grad.getFamilyName())) {
-            discount = grad.calculateDiscount(list);
-            return discount;
-        }
-        discount = person.calculateDiscount(list);
-        return discount;
+    public double checkPersonDiscount(Person person, GroceryList list) {
+        return (double) Math.round(person.calculateDiscount(list)*100)/100;
     }
 }
 

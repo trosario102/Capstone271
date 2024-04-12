@@ -37,7 +37,7 @@ public class GroceryList {
             total += groceryList.get(i).getPricePerUnit() * groceryList.get(i).getQuantity();
         }
 
-        return total;
+        return (double) Math.round(total*100)/100;
     }
 
 

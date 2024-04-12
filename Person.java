@@ -108,6 +108,9 @@ public class Person implements Shopper, Child, Comparable<Person>{
 
 
     public String toString() {
+        if (age != 0) {
+            return firstName + " " + familyName + " (" + age + ")";
+        }
         return firstName + " " + familyName;
     }
 
