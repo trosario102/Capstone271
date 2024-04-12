@@ -60,7 +60,6 @@ public class Relationship {
             }
             return kid;
         } else {
-            System.out.println("Same sex partners cannot create a child.");
             return null;
         }
     }
