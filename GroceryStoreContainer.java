@@ -1,4 +1,3 @@
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,17 +9,6 @@ public class GroceryStoreContainer {
     }
 
     // Method to add a new grocery store to the container
-   /* public boolean addGroceryStore(String storeName) {
-        if(!groceryStores.containsKey(storeName)) {
-            GroceryStore store = new GroceryStore(storeName);
-            groceryStores.put(storeName, store);
-            return true;
-        } else{
-            return false;
-        }
-    }
-    */
-
     public void addGroceryStore(GroceryStore store) {
         groceryStores.put(store.getStoreName(), store);
     }
