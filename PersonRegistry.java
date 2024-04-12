@@ -13,7 +13,7 @@ public class PersonRegistry implements User {
         registeredPeople.put(person.getFirstName() + " " + person.getFamilyName(), person);
     }
 
-    public Person getPerson(String firstName, String familyName, String sex) {
+    public Person getPerson(String firstName, String familyName, char sex) {
         String fullName = "";
         fullName += firstName + " " + familyName;
         if (registeredPeople.containsKey(fullName)) {
@@ -22,7 +22,7 @@ public class PersonRegistry implements User {
         return makeNew(firstName, familyName, sex);
     }
 
-    public Person makeNew(String firstName, String familyName, String sex){
+    public Person makeNew(String firstName, String familyName, char sex){
         Scanner scan = new Scanner(System.in);
         System.out.println("Hi " + firstName + "! You are not in the system.");
         System.out.print("Are you atLarge, undergrad, graduate, professor, or a person? ");
