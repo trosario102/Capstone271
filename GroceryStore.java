@@ -2,16 +2,13 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class GroceryStore {
     private String storeName;
     private List<GroceryItem> groceryItems;
-   // private Map<String, GroceryStoreContainer> groceryStores;
 
     public GroceryStore(String storeName) {
         this.storeName = storeName;
         this.groceryItems = new LinkedList<>();
-        //this.groceryStores = new HashMap<>();
     }
 
     public void addItem(GroceryItem item) {
@@ -48,7 +45,4 @@ public class GroceryStore {
 
         return result;
     }
-
-
 }
-
