@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class PersonGroceryStoreGroceryListTester {
-    public static GroceryStoreContainer createAndAddGroceryItems(){
+    public static GroceryStoreContainer createAndAddGroceryItems() {
         GroceryItem item1 = new GroceryItem("apple", 0.68);
         GroceryItem item2 = new GroceryItem("strawberry", 2.11);
         GroceryItem item3 = new GroceryItem("eggs", 3.88);
@@ -52,7 +52,7 @@ public class PersonGroceryStoreGroceryListTester {
         return storesLists;
     }
 
-    public static void createCourses(PersonRegistry registry) {
+    public static void createCourses(Registry registry) {
         // 3 courses
         // Assumed parameters departmentName, courseNumber, courseTitle, maxCapacity
         registry.recordCourse("COMP", 170, "Intro to OOP", 2, 3);
@@ -62,7 +62,7 @@ public class PersonGroceryStoreGroceryListTester {
         registry.recordCourse("COMP", 479, "Machine Learning", 3, 3);
     }
 
-    public static PersonRegistry createAndAddPeople() {
+    public static Registry createAndAddPeople() {
         Person p1 = new Undergraduate("Donald", "Draper", "m", 111, "freshman");
         Person p2 = new Undergraduate("Natalie", "Mering", "f", 122, "sophomore");
         Person p3 = new Undergraduate("Lisa", "Simpson", "f", 345, "senior");
@@ -77,7 +77,7 @@ public class PersonGroceryStoreGroceryListTester {
         Person p12 = new Person("Alan", "Palomo","m");
         Person p13 = new Person("Frankie", "Cosmos","f");
 
-        PersonRegistry registry = new PersonRegistry();
+        Registry registry = new Registry();
         registry.addPerson(p1);
         registry.addPerson(p2);
         registry.addPerson(p3);
@@ -142,7 +142,7 @@ public class PersonGroceryStoreGroceryListTester {
         return registry;
     }
 
-    public static void registerStudents(PersonRegistry registry) {
+    public static void registerStudents(Registry registry) {
         registry.enrollStudent("Donald", "Draper", "COMP", 170);
         registry.enrollStudent("Natalie", "Mering", "COMP", 271);
         registry.enrollStudent("Ezra", "Koenig", "COMP", 272);
@@ -155,9 +155,8 @@ public class PersonGroceryStoreGroceryListTester {
         registry.enrollStudent("Donald", "Draper", "COMP", 271);
     }
     public static void main(String[] args) {
-
         GroceryStoreContainer storesLists = createAndAddGroceryItems();
-        PersonRegistry registry = createAndAddPeople();
+        Registry registry = createAndAddPeople();
         createCourses(registry);
         registerStudents(registry);
 
@@ -195,6 +194,10 @@ public class PersonGroceryStoreGroceryListTester {
                     }
                     String num = scan.next();
                     Course course = registry.getCourse(dept, Integer.parseInt(num));
+                    if (course == null) {
+                        System.out.println("Not a valid course! Please try again!");
+                        continue;
+                    }
                     registry.enrollStudent(person.getFirstName(), person.getFamilyName(), dept, Integer.parseInt(num));
                 }
 
@@ -210,12 +213,19 @@ public class PersonGroceryStoreGroceryListTester {
                         break;
                     }
                     String num = scan.next();
+                    Course course = registry.getCourse(dept, Integer.parseInt(num));
+                    if (course == null) {
+                        System.out.println("Not a valid course! Please try again!");
+                        continue;
+                    }
                     registry.removeStudent(person.getFirstName(), person.getFamilyName(), dept, Integer.parseInt(num));
                 }
 
                 System.out.println("Here are your registered courses: " + student.getMyCourseList());
                 System.out.println("Here are your waitlisted courses: " + student.getMyWaitList());
 
+                System.out.println();
+                System.out.println("####### Total Course Registration Report #######");
                 for (Course c: registry.getCourses()) {
                     System.out.println("Registered for " + c + ": " + c.getRegistered());
                     System.out.println("Waitlisted for " + c + ": " + c.getWaitListed());

@@ -12,13 +12,13 @@ public class GroceryItem {
         return item;
     }
 
+    public double getPricePerUnit() {
+        return pricePerUnit;
+    }
+
     // Setter method for the name of the grocery item
     public void setItem(String item) {
         this.item = item;
-    }
-
-    public double getPricePerUnit() {
-        return pricePerUnit;
     }
 
     // Override the toString method to provide a string representation of the grocery item

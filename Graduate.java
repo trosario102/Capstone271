@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Set;
 
 public class Graduate extends Student {
     private String expectedCompletion;
@@ -12,7 +13,7 @@ public class Graduate extends Student {
         return expectedCompletion;
     }
 
-    public List<Course> getMyCourselist() {
+    public Set<Course> getMyCourselist() {
         return super.getMyCourseList();
     }
 
