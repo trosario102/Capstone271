@@ -110,7 +110,7 @@ public class Course implements java.lang.Comparable<Course> {
     }
 
     public String toString() {
-        return dept + courseNum;
+        return dept + " " + courseNum;
     }
 
     public int compareTo(Course c) {

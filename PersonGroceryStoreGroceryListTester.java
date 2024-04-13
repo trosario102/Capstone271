@@ -50,7 +50,16 @@ public class PersonGroceryStoreGroceryListTester {
         store2.addItem(item4);
 
         return storesLists;
+    }
 
+    public static void createCourses(PersonRegistry registry) {
+        // 3 courses
+        // Assumed parameters departmentName, courseNumber, courseTitle, maxCapacity
+        registry.recordCourse("COMP", 170, "Intro to OOP", 2, 3);
+        registry.recordCourse("COMP", 271, "Data Structures I", 2, 3);
+        registry.recordCourse("COMP", 272, "Data Structures II", 2, 3);
+        registry.recordCourse("COMP", 453, "Database Programming", 3, 3);
+        registry.recordCourse("COMP", 479, "Machine Learning", 3, 3);
     }
 
     public static PersonRegistry createAndAddPeople() {
@@ -132,10 +141,25 @@ public class PersonGroceryStoreGroceryListTester {
 
         return registry;
     }
+
+    public static void registerStudents(PersonRegistry registry) {
+        registry.enrollStudent("Donald", "Draper", "COMP", 170);
+        registry.enrollStudent("Natalie", "Mering", "COMP", 271);
+        registry.enrollStudent("Ezra", "Koenig", "COMP", 272);
+        registry.enrollStudent("Lisa", "Simpson", "COMP", 170);
+        registry.enrollStudent("Ezra", "Koenig", "COMP", 170);            //duplicate, should be ignored
+        registry.enrollStudent("Laura", "Marling", "COMP", 170);
+        registry.enrollStudent("James", "Murphy", "COMP", 170);    //will waitlist
+        registry.enrollStudent("Leslie", "Knope", "COMP", 272);
+        registry.enrollStudent("Lisa", "Simpson", "COMP", 271);
+        registry.enrollStudent("Donald", "Draper", "COMP", 271);
+    }
     public static void main(String[] args) {
 
         GroceryStoreContainer storesLists = createAndAddGroceryItems();
         PersonRegistry registry = createAndAddPeople();
+        createCourses(registry);
+        registerStudents(registry);
 
         Scanner scan = new Scanner(System.in);
 
@@ -147,15 +171,61 @@ public class PersonGroceryStoreGroceryListTester {
 
         Person person = registry.getPerson(firstName, lastName, sex);
         System.out.println("Welcome " + person);
-        System.out.println("Would you like to shop or look at ancestry? ");
+        System.out.print("Would you like to (1) look at ancestry, (2) add/drop a course, or (3) shop? ");
         String response = scan.next().toLowerCase();
 
-        if (response.equals("ancestry")) {
+        if (response.equals("1")) {
                 System.out.println("Maternal Line: " + registry.getMaternalLine(person));
                 System.out.println("Paternal Line: " + registry.getPaternalLine(person));
                 System.out.println("Children: " + registry.getAllChildren(person));
 
-        } else if (response.equals("shop")) {
+        } else if (response.equals("2")) {
+            if (person instanceof Student) {
+                Student student = (Student) person;
+                System.out.println("Here are your current registered courses: " + student.getMyCourseList());
+                System.out.println("Here are your current waitlisted courses: " + student.getMyWaitList());
+
+                System.out.println("Available classes: " + registry.getCourses());
+
+                while (true) {
+                    System.out.print("Enter the name and number of the course you'd like to register for: ");
+                    String dept = scan.next();
+                    if (dept.equals("stop")){
+                        break;
+                    }
+                    String num = scan.next();
+                    Course course = registry.getCourse(dept, Integer.parseInt(num));
+                    registry.enrollStudent(person.getFirstName(), person.getFamilyName(), dept, Integer.parseInt(num));
+                }
+
+                for (Course c: student.getMyCourseList()) {
+                    System.out.println("Registered for " + c + ": " + c.getRegistered());
+                    System.out.println("Waitlisted for " + c + ": " + c.getWaitListed());
+                }
+
+                while (true) {
+                    System.out.print("Enter the name and number of the course you'd like to drop: ");
+                    String dept = scan.next();
+                    if (dept.equals("stop")){
+                        break;
+                    }
+                    String num = scan.next();
+                    registry.removeStudent(person.getFirstName(), person.getFamilyName(), dept, Integer.parseInt(num));
+                }
+
+                System.out.println("Here are your registered courses: " + student.getMyCourseList());
+                System.out.println("Here are your waitlisted courses: " + student.getMyWaitList());
+
+                for (Course c: registry.getCourses()) {
+                    System.out.println("Registered for " + c + ": " + c.getRegistered());
+                    System.out.println("Waitlisted for " + c + ": " + c.getWaitListed());
+                }
+
+            } else {
+                System.out.println("You're not a student! You can't add/drop classes!");
+            }
+
+        } else {
 
             System.out.print("You have no grocery lists saved. Type your Grocery Store: ");
             String store = scan.next().toLowerCase();
