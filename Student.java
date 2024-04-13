@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Student extends Person {
     private int id;
@@ -19,6 +20,10 @@ public class Student extends Person {
 
     public List<Course> getMyCourseList() {
         return myCourseList;
+    }
+
+    public List<Course> getMyWaitList() {
+        return myWaitList;
     }
 
     /*

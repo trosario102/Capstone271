@@ -4,7 +4,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
     private String firstName;
     private String familyName;
     private double budget;
-    private char sex; // M or F
+    private String sex; // M or F
     private Relationship relationship;
     private Set<Relationship> pastRelationships;
     private Person mother;
@@ -12,7 +12,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
     private Set<Person> children;
     private int age;
 
-    public Person(String firstName, String familyName, char sex) {
+    public Person(String firstName, String familyName, String sex) {
         this.firstName = firstName;
         this.familyName = familyName;
         this.age = 0;
@@ -82,7 +82,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
         return relationship;
     }
 
-    public char getSex(){
+    public String getSex(){
         return sex;
     }
 

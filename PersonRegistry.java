@@ -1,19 +1,30 @@
-import java.beans.PropertyEditor;
 import java.util.*;
 
 
 public class PersonRegistry implements User {
     private Map<String, Person> registeredPeople;
+    private ArrayList<Course> courses;
+    private HashMap<String, Course> courseFinder;
 
     public PersonRegistry() {
-        this.registeredPeople = new HashMap<>();
+        registeredPeople = new HashMap<>();
+        courses = new ArrayList<>();
+        courseFinder = new HashMap<>();
     }
 
     public void addPerson(Person person) {
         registeredPeople.put(person.getFirstName() + " " + person.getFamilyName(), person);
     }
 
-    public Person getPerson(String firstName, String familyName, char sex) {
+    public Course getCourse(String dept, int num) {
+        return courseFinder.get(dept + " " + num);
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public Person getPerson(String firstName, String familyName, String sex) {
         String fullName = "";
         fullName += firstName + " " + familyName;
         if (registeredPeople.containsKey(fullName)) {
@@ -22,23 +33,23 @@ public class PersonRegistry implements User {
         return makeNew(firstName, familyName, sex);
     }
 
-    public Person makeNew(String firstName, String familyName, char sex){
+    public Person makeNew(String firstName, String familyName, String sex){
         Scanner scan = new Scanner(System.in);
         System.out.println("Hi " + firstName + "! You are not in the system.");
-        System.out.print("Are you atLarge, undergrad, graduate, professor, or a person? ");
-        String response = scan.next();
+        System.out.print("Are you (1) atLarge, (2) undergrad, (3) graduate, (4) professor, or a (5) person? ");
+        int response = scan.nextInt();
 
         Person person;
         int id;
         String year;
-        switch(response.toLowerCase()) {
-            case "atlarge":
+        switch(response) {
+            case 1:
                 System.out.print("Enter your studentID: ");
                 id = scan.nextInt();
                 scan.nextLine();
                 person = new AtLarge(firstName, familyName, sex, id);
                 break;
-            case "undergrad":
+            case 2:
                 System.out.print("Enter your studentID: ");
                 id = scan.nextInt();
                 scan.nextLine();
@@ -46,7 +57,7 @@ public class PersonRegistry implements User {
                 year = scan.nextLine();
                 person = new Undergraduate(firstName, familyName, sex, id, year);
                 break;
-            case "graduate":
+            case 3:
                 System.out.print("Enter your studentID: ");
                 id = scan.nextInt();
                 scan.nextLine();
@@ -54,7 +65,7 @@ public class PersonRegistry implements User {
                 year = scan.nextLine();
                 person = new Graduate(firstName, familyName, sex, id, year);
                 break;
-            case "professor":
+            case 4:
                 System.out.print("Enter your department & subject: ");
                 String dept = scan.next();
                 String subject = scan.next();
@@ -62,7 +73,6 @@ public class PersonRegistry implements User {
                 break;
             default:
                 person = new Person(firstName, familyName, sex);
-                System.out.println("im running default");
                 break;
         }
 
@@ -71,6 +81,29 @@ public class PersonRegistry implements User {
 
     }
 
+    public void recordCourse(String dName, int cNum, String title, int maxCap, int hours) {
+        Course c = new Course(dName, cNum, title, maxCap, hours);
+        courses.add(c);
+        courseFinder.put(dName + " " + cNum, c);
+    }
+
+    public void enrollStudent(String first, String last, String deptName, int cNum) {
+        Course c = courseFinder.get(deptName + " " + cNum);
+        Person p = registeredPeople.get(first + " " + last);
+        if (p instanceof Student) {
+            Student s = (Student) p;
+            c.addStudent(s);
+        }
+    }
+
+    public void removeStudent(String first, String last, String deptName, int cNum) {
+        Person p = registeredPeople.get(first + " " + last);
+        Course c = courseFinder.get(deptName + " " + cNum);
+        if (p instanceof Student) {
+            Student s = (Student) p;
+            c.dropStudent(s);
+        }
+    }
 
     public String toString() {
         String result = "";
