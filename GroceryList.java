@@ -36,7 +36,7 @@ public class GroceryList {
     public String toString() {
         String result = "Grocery Cart:\n";
         for (GroceryItemOrder itemOrder : groceryList) {
-            result += itemOrder + "\n";
+            result += Integer.toString(itemOrder.getQuantity()) + " " + itemOrder + "\n";
         }
         result += "\nSubtotal: " + getTotalCost();
         return result;
