@@ -1,25 +1,25 @@
 import java.util.*;
 
-public class Person implements Shopper, Child, Comparable<Person>{
-    private String firstName;
-    private String familyName;
-    private double budget;
-    private String sex; // M or F
-    private Relationship relationship;
-    private Set<Relationship> pastRelationships;
-    private Person mother;
-    private Person father;
-    private Set<Person> children;
+public class Person implements Shopper, Child, Comparable<Person> {
     private int age;
+    private double budget;
+    private Set<Person> children;
+    private String familyName;
+    private String firstName;
+    private Person father;
+    private Person mother;
+    private Set<Relationship> pastRelationships;
+    private Relationship relationship;
+    private String sex; // m or f
 
     public Person(String firstName, String familyName, String sex) {
-        this.firstName = firstName;
-        this.familyName = familyName;
         this.age = 0;
         this.budget = 0;
-        this.relationship = new Relationship();
-        this.pastRelationships = new HashSet<>();
         this.children = new HashSet<>();
+        this.familyName = familyName;
+        this.firstName = firstName;
+        this.pastRelationships = new HashSet<>();
+        this.relationship = new Relationship();
         this.sex = sex;
     }
 
@@ -67,6 +67,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
     public Person getMother() {
         return this.mother;
     }
+
     public Person getPartner() {
         if (relationship != null){
             return relationship.getPartner(this);
@@ -74,11 +75,11 @@ public class Person implements Shopper, Child, Comparable<Person>{
         return null;
     }
 
-    public Set<Relationship> getPastRelationships(){
+    public Set<Relationship> getPastRelationships() {
         return pastRelationships;
     }
 
-    public Relationship getRelationship(){
+    public Relationship getRelationship() {
         return relationship;
     }
 
@@ -90,6 +91,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
         this.age = n;
     }
     public void setFather(Person p) {
+
         this.father = p;
     }
 
@@ -125,7 +127,7 @@ public class Person implements Shopper, Child, Comparable<Person>{
         }
     }
 
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (o instanceof Person){
             Person p = (Person) o;
             if (this.firstName.equals(p.firstName) && this.familyName.equals(p.familyName) && this.sex.equals(p.sex)){

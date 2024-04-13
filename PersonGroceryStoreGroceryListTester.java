@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class PersonGroceryStoreGroceryListTester {
-    public static GroceryStoreContainer createAndAddGroceryItems(){
+    public static GroceryStoreContainer createAndAddGroceryItems() {
         GroceryItem item1 = new GroceryItem("apple", 0.68);
         GroceryItem item2 = new GroceryItem("strawberry", 2.11);
         GroceryItem item3 = new GroceryItem("eggs", 3.88);
@@ -155,7 +155,6 @@ public class PersonGroceryStoreGroceryListTester {
         registry.enrollStudent("Donald", "Draper", "COMP", 271);
     }
     public static void main(String[] args) {
-
         GroceryStoreContainer storesLists = createAndAddGroceryItems();
         PersonRegistry registry = createAndAddPeople();
         createCourses(registry);
@@ -195,6 +194,10 @@ public class PersonGroceryStoreGroceryListTester {
                     }
                     String num = scan.next();
                     Course course = registry.getCourse(dept, Integer.parseInt(num));
+                    if (course == null) {
+                        System.out.println("Not a valid course! Please try again!");
+                        continue;
+                    }
                     registry.enrollStudent(person.getFirstName(), person.getFamilyName(), dept, Integer.parseInt(num));
                 }
 
@@ -210,12 +213,19 @@ public class PersonGroceryStoreGroceryListTester {
                         break;
                     }
                     String num = scan.next();
+                    Course course = registry.getCourse(dept, Integer.parseInt(num));
+                    if (course == null) {
+                        System.out.println("Not a valid course! Please try again!");
+                        continue;
+                    }
                     registry.removeStudent(person.getFirstName(), person.getFamilyName(), dept, Integer.parseInt(num));
                 }
 
                 System.out.println("Here are your registered courses: " + student.getMyCourseList());
                 System.out.println("Here are your waitlisted courses: " + student.getMyWaitList());
 
+                System.out.println();
+                System.out.println("####### Total Course Registration Report #######");
                 for (Course c: registry.getCourses()) {
                     System.out.println("Registered for " + c + ": " + c.getRegistered());
                     System.out.println("Waitlisted for " + c + ": " + c.getWaitListed());

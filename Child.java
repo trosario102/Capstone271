@@ -1,7 +1,6 @@
 public interface Child {
-    public void setMother(Person p);
-    public void setFather(Person p);
-    public Person getMother();
     public Person getFather();
-
+    public Person getMother();
+    public void setFather(Person p);
+    public void setMother(Person p);
 }

@@ -6,11 +6,11 @@ public class GroceryItemOrder extends GroceryItem{
         this.quantity = quantity;
     }
 
-    public int getQuantity(){
+    public int getQuantity() {
         return quantity;
     }
 
-    public double getPricePerQuantity(){
+    public double getPricePerQuantity() {
         return quantity * super.getPricePerUnit();
     }
 }

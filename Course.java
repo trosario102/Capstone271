@@ -5,57 +5,22 @@ import java.util.Set;
 
 public class Course implements java.lang.Comparable<Course> {
 
-    private String dept;
     private int courseNum;
-    private String title;
-    private int maxCapacity;
     private int creditHours;
+    private String dept;
+    private int maxCapacity;
     private Set<Student> registered;
+    private String title;
     private LinkedList<Student> waitListed;
 
     public Course(String d, int num, String t, int cap, int hours) {
         dept = d;
         courseNum = num;
-        title = t;
-        maxCapacity = cap;
         creditHours = hours;
+        maxCapacity = cap;
         registered = new HashSet<>();
+        title = t;
         waitListed = new LinkedList<>();
-    }
-
-    public String getDept() {
-        return dept;
-    }
-
-    public int getCourseNum() {
-        return courseNum;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getMaxCapacity() {
-        return maxCapacity;
-    }
-
-    public int getCreditHours() {
-        return creditHours;
-    }
-
-    private boolean isStudent(Person p) {
-        if (p instanceof Student) {
-            return true;
-        }
-        return false;
-    }
-
-    public Set<Student> getRegistered() {
-        return registered;
-    }
-
-    public LinkedList<Student> getWaitListed() {
-        return waitListed;
     }
 
     public boolean addStudent(Person p) {
@@ -105,6 +70,41 @@ public class Course implements java.lang.Comparable<Course> {
                 }
                 return true;
             }
+        }
+        return false;
+    }
+
+    public int getCourseNum() {
+        return courseNum;
+    }
+
+    public int getCreditHours() {
+        return creditHours;
+    }
+
+    public String getDept() {
+        return dept;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public Set<Student> getRegistered() {
+        return registered;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public LinkedList<Student> getWaitListed() {
+        return waitListed;
+    }
+
+    private boolean isStudent(Person p) {
+        if (p instanceof Student) {
+            return true;
         }
         return false;
     }

@@ -7,6 +7,10 @@ public class GroceryList {
         this.groceryList = new ArrayList<GroceryItemOrder>();
     }
 
+    public void addItem(GroceryItemOrder item) {
+        groceryList.add(item);
+    }
+
     public ArrayList<GroceryItemOrder> getGroceryList() {
         return this.groceryList;
     }
@@ -16,14 +20,6 @@ public class GroceryList {
         return this.groceryList.size();
     }
 
-    public void addItem(GroceryItemOrder item) {
-        groceryList.add(item);
-    }
-
-    public void removeItem(GroceryItemOrder item) {
-        groceryList.remove(item);
-    }
-
     public double getTotalCost() {
         double total = 0;
         for (int i = 0; i < groceryList.size(); i++) {
@@ -31,6 +27,10 @@ public class GroceryList {
         }
 
         return (double) Math.round(total*100)/100;
+    }
+
+    public void removeItem(GroceryItemOrder item) {
+        groceryList.remove(item);
     }
 
     public String toString() {

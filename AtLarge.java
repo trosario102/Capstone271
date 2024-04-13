@@ -6,10 +6,6 @@ public class AtLarge extends Student {
         super(firstName, familyName, sex, id);
     }
 
-    public List<Course> getMyCourselist() {
-        return super.getMyCourseList();
-    }
-
     public void addCourse(Course course) {
         super.addCourse(course);
     }

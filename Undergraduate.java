@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Set;
 
 public class Undergraduate extends Student {
     private String year;
@@ -10,10 +11,6 @@ public class Undergraduate extends Student {
 
     public String getYear() {
         return year;
-    }
-
-    public List<Course> getMyCourselist() {
-        return super.getMyCourseList();
     }
 
     public void addCourse(Course course) {

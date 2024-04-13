@@ -15,24 +15,24 @@ public class GroceryStore {
         groceryItems.add(item);
     }
 
-    public void removeItem(GroceryItem item) {
-        groceryItems.remove(item);
-    }
-
-    public String getStoreName() {
-        return storeName;
-    }
-
     public boolean containsItem(GroceryItem item) {
         return groceryItems.contains(item);
+    }
+
+    public List<GroceryItem> getItemCost() {
+        return groceryItems;
     }
 
     public List<GroceryItem> getItemName() {
         return groceryItems;
     }
 
-    public List<GroceryItem> getItemCost() {
-        return groceryItems;
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void removeItem(GroceryItem item) {
+        groceryItems.remove(item);
     }
 
     public String toString() {

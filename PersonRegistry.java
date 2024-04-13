@@ -2,18 +2,53 @@ import java.util.*;
 
 
 public class PersonRegistry implements User {
-    private Map<String, Person> registeredPeople;
-    private ArrayList<Course> courses;
     private HashMap<String, Course> courseFinder;
+    private ArrayList<Course> courses;
+    private Map<String, Person> registeredPeople;
 
     public PersonRegistry() {
-        registeredPeople = new HashMap<>();
-        courses = new ArrayList<>();
         courseFinder = new HashMap<>();
+        courses = new ArrayList<>();
+        registeredPeople = new HashMap<>();
+    }
+
+    @Override
+    public void addGroceryItems(String itemName, int quantity, GroceryStore store, GroceryList list) {
+        for (GroceryItem item : store.getItemName()) {
+            if (item.getItem().equals(itemName)) {
+                GroceryItemOrder itemOrder = new GroceryItemOrder(itemName, quantity, item.getPricePerUnit());
+                list.addItem(itemOrder);
+            }
+        }
     }
 
     public void addPerson(Person person) {
         registeredPeople.put(person.getFirstName() + " " + person.getFamilyName(), person);
+    }
+
+    @Override
+    public double checkPersonDiscount(Person person, GroceryList list) {
+        return (double) Math.round(person.calculateDiscount(list)*100)/100;
+    }
+
+    public void enrollStudent(String first, String last, String deptName, int cNum) {
+        Course c = courseFinder.get(deptName + " " + cNum);
+        Person p = registeredPeople.get(first + " " + last);
+        if (p instanceof Student) {
+            Student s = (Student) p;
+            c.addStudent(s);
+        }
+    }
+
+    public ArrayList<Person> getAllChildren(Person p) {
+        ArrayList<Person> children = new ArrayList<>();
+        children.addAll(p.getChildren());
+        Collections.sort(children, new Comparator<Person>(){
+            public int compare(Person p1, Person p2) {
+                return p1.getAge() - p2.getAge();
+            }
+        });
+        return children;
     }
 
     public Course getCourse(String dept, int num) {
@@ -24,16 +59,36 @@ public class PersonRegistry implements User {
         return courses;
     }
 
+    public ArrayList<Person> getMaternalLine(Person p) {
+        ArrayList<Person> maternalLine = new ArrayList<>();
+
+        while (p != null && p.getMother() != null) {
+            maternalLine.add(p.getMother());
+            p = p.getMother();
+        }
+        return maternalLine;
+    }
+
+    public ArrayList<Person> getPaternalLine(Person p) {
+        ArrayList<Person> paternalLine = new ArrayList<>();
+
+        while (p != null && p.getFather() != null) {
+            paternalLine.add(p.getFather());
+            p = p.getFather();
+        }
+        return paternalLine;
+    }
+
     public Person getPerson(String firstName, String familyName, String sex) {
         String fullName = "";
         fullName += firstName + " " + familyName;
         if (registeredPeople.containsKey(fullName)) {
             return registeredPeople.get(fullName);
         }
-        return makeNew(firstName, familyName, sex);
+        return makeNewPerson(firstName, familyName, sex);
     }
 
-    public Person makeNew(String firstName, String familyName, String sex){
+    public Person makeNewPerson(String firstName, String familyName, String sex) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Hi " + firstName + "! You are not in the system.");
         System.out.print("Are you (1) atLarge, (2) undergrad, (3) graduate, (4) professor, or a (5) person? ");
@@ -87,15 +142,6 @@ public class PersonRegistry implements User {
         courseFinder.put(dName + " " + cNum, c);
     }
 
-    public void enrollStudent(String first, String last, String deptName, int cNum) {
-        Course c = courseFinder.get(deptName + " " + cNum);
-        Person p = registeredPeople.get(first + " " + last);
-        if (p instanceof Student) {
-            Student s = (Student) p;
-            c.addStudent(s);
-        }
-    }
-
     public void removeStudent(String first, String last, String deptName, int cNum) {
         Person p = registeredPeople.get(first + " " + last);
         Course c = courseFinder.get(deptName + " " + cNum);
@@ -103,6 +149,11 @@ public class PersonRegistry implements User {
             Student s = (Student) p;
             c.dropStudent(s);
         }
+    }
+
+    public boolean selectGroceryStore(String storeName, GroceryStoreContainer storesLists) {
+        GroceryStore store = storesLists.getGroceryStore(storeName);
+        return store != null;
     }
 
     public String toString() {
@@ -113,58 +164,5 @@ public class PersonRegistry implements User {
         return result;
     }
 
-    public ArrayList<Person> getPaternalLine(Person p) {
-        ArrayList<Person> paternalLine = new ArrayList<>();
-
-        while (p != null && p.getFather() != null) {
-            paternalLine.add(p.getFather());
-            p = p.getFather();
-        }
-        return paternalLine;
-    }
-
-    public ArrayList<Person> getMaternalLine(Person p) {
-        ArrayList<Person> maternalLine = new ArrayList<>();
-
-        while (p != null && p.getMother() != null) {
-            maternalLine.add(p.getMother());
-            p = p.getMother();
-        }
-        return maternalLine;
-    }
-
-    public ArrayList<Person> getAllChildren(Person p) {
-        ArrayList<Person> children = new ArrayList<>();
-
-        children.addAll(p.getChildren());
-        Collections.sort(children, new Comparator<Person>(){
-            public int compare(Person p1, Person p2) {
-                return p1.getAge() - p2.getAge();
-            }
-        });
-        return children;
-    }
-
-
-    public boolean selectGroceryStore(String storeName, GroceryStoreContainer storesLists) {
-        GroceryStore store = storesLists.getGroceryStore(storeName);
-        return store != null;
-    }
-
-
-    @Override
-    public void addGroceryItems(String itemName, int quantity, GroceryStore store, GroceryList list) {
-        for (GroceryItem item : store.getItemName()) {
-            if (item.getItem().equals(itemName)) {
-                GroceryItemOrder itemOrder = new GroceryItemOrder(itemName, quantity, item.getPricePerUnit());
-                list.addItem(itemOrder);
-            }
-        }
-    }
-
-    @Override
-    public double checkPersonDiscount(Person person, GroceryList list) {
-        return (double) Math.round(person.calculateDiscount(list)*100)/100;
-    }
 }
 

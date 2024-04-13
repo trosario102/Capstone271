@@ -13,9 +13,9 @@ public class GroceryStoreContainer {
         groceryStores.put(store.getStoreName(), store);
     }
 
-    // Method to remove a grocery store from the container
-    public void removeGroceryStore(String storeName) {
-        groceryStores.remove(storeName);
+    // Method to check if a grocery store exists in the container
+    public boolean containsGroceryStore(String storeName) {
+        return groceryStores.containsKey(storeName);
     }
 
     // Method to get a grocery store by name
@@ -23,8 +23,9 @@ public class GroceryStoreContainer {
         return groceryStores.get(storeName);
     }
 
-    // Method to check if a grocery store exists in the container
-    public boolean containsGroceryStore(String storeName) {
-        return groceryStores.containsKey(storeName);
+    // Method to remove a grocery store from the container
+    public void removeGroceryStore(String storeName) {
+        groceryStores.remove(storeName);
     }
+
 }

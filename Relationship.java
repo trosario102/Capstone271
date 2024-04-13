@@ -2,15 +2,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Relationship {
+    private Set<Child> children;
     private Person partnerA;
     private Person partnerB;
-    private Set<Child> children;
 
     public Relationship() {
         this(null, null);
     }
 
-    public Relationship(Person a, Person b){
+    public Relationship(Person a, Person b) {
         this.partnerA = a;
         if (this.partnerA != null){
             this.partnerA.setRelationship(this);
@@ -22,27 +22,11 @@ public class Relationship {
         this.children = new HashSet<>();
     }
 
-    public Person getPartner(Person p) {
-        if (p.equals(partnerA)){
-            return partnerB;
-        } else {
-            return partnerA;
-        }
-    }
-
-    public Set<Child> getChildren(){
-        return children;
-    }
-
     public void addPartners(Person p1, Person p2) {
         this.partnerA = p1;
         p1.setRelationship(this);
         this.partnerB = p2;
         p2.setRelationship(this);
-    }
-
-    public boolean isFemale(Person p){
-        return p.getSex().equals("f");
     }
 
     public Person createChild(String firstName, String familyName, String sex) {
@@ -69,7 +53,23 @@ public class Relationship {
         partnerB.endRelationship();
     }
 
-    public String toString(){
+    public Set<Child> getChildren() {
+        return children;
+    }
+
+    public Person getPartner(Person p) {
+        if (p.equals(partnerA)){
+            return partnerB;
+        } else {
+            return partnerA;
+        }
+    }
+
+    public boolean isFemale(Person p) {
+        return p.getSex().equals("f");
+    }
+
+    public String toString() {
         return partnerA + " & " + partnerB;
     }
 }
