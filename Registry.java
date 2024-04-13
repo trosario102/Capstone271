@@ -1,12 +1,12 @@
 import java.util.*;
 
 
-public class PersonRegistry implements User {
+public class Registry implements User {
     private HashMap<String, Course> courseFinder;
     private ArrayList<Course> courses;
     private Map<String, Person> registeredPeople;
 
-    public PersonRegistry() {
+    public Registry() {
         courseFinder = new HashMap<>();
         courses = new ArrayList<>();
         registeredPeople = new HashMap<>();
