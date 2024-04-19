@@ -91,8 +91,8 @@ public class PersonGroceryStoreGroceryListTester {
         Person p5 = new Professor("Yasin", "Silva", "m", "COMP", "Database Programming");
         Person p6 = new Graduate("Ezra", "Koenig", "m", 212, "May 2025");
         Person p7 = new Graduate("Leslie", "Knope", "f", 300, "December 2026");
-        Person p8 = new AtLarge("Laura", "Marling", "f", 999);
-        Person p9 = new AtLarge("James", "Murphy", "m", 717);
+        Person p8 = new AtLarge("Laura", "Marling", "f", 999, "Fall 2024");
+        Person p9 = new AtLarge("James", "Murphy", "m", 717, "Spring 2025");
         Person p10 = new Person("Alex", "Giannascoli","m");
         Person p11 = new Person("Katie", "Crutchfield","f");
         Person p12 = new Person("Alan", "Palomo","m");
