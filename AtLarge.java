@@ -1,16 +1,15 @@
 import java.util.List;
 
 public class AtLarge extends Student {
+    String registeredSemester;
 
-    public AtLarge(String firstName, String familyName, String sex, int id) {
+    public AtLarge(String firstName, String familyName, String sex, int id, String semester) {
         super(firstName, familyName, sex, id);
+        registeredSemester = semester;
     }
 
-    public void addCourse(Course course) {
-        super.addCourse(course);
+    public String getRegisteredSemester() {
+        return registeredSemester;
     }
 
-    public void dropCourse(Course course) {
-        super.dropCourse(course);
-    }
 }

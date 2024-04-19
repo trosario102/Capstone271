@@ -102,7 +102,9 @@ public class Registry implements User {
                 System.out.print("Enter your studentID: ");
                 id = scan.nextInt();
                 scan.nextLine();
-                person = new AtLarge(firstName, familyName, sex, id);
+                System.out.print("Enter your registered semester: ");
+                String semester = scan.nextLine();
+                person = new AtLarge(firstName, familyName, sex, id, semester);
                 break;
             case 2:
                 System.out.print("Enter your studentID: ");

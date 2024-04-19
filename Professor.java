@@ -7,4 +7,12 @@ public class Professor extends Person {
         this.department = department;
         this.subject = subject;
     }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
 }
