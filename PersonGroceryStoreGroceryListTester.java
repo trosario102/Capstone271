@@ -1,9 +1,14 @@
-import javax.management.relation.Relation;
-import javax.management.relation.RelationNotification;
 import java.util.Scanner;
 
-
 public class PersonGroceryStoreGroceryListTester {
+    /*
+     * createAndAddGroceryItems() - static method returns grocery storesLists
+     * create multiple GroceryItem objects, which take two parameters: name of the item and pricePerUnit of an item
+     * create a GroceryStoreContainer object called storeLists
+     * create GroceryStore objects that takes a parameter: name of the store
+     * add grocery stores to storeLists
+     * add groceryItems to each store
+     */
     public static GroceryStoreContainer createAndAddGroceryItems() {
         GroceryItem item1 = new GroceryItem("apple", 0.68);
         GroceryItem item2 = new GroceryItem("strawberry", 2.11);
@@ -52,6 +57,10 @@ public class PersonGroceryStoreGroceryListTester {
         return storesLists;
     }
 
+    /*
+     * createCourses() - static method - void return type - takes a parameter called Registry
+     * record multiple courses for students to enroll in a registry system
+     */
     public static void createCourses(Registry registry) {
         // 3 courses
         // Assumed parameters departmentName, courseNumber, courseTitle, maxCapacity
@@ -62,6 +71,18 @@ public class PersonGroceryStoreGroceryListTester {
         registry.recordCourse("COMP", 479, "Machine Learning", 3, 3);
     }
 
+    /*
+     * createAndAddPeople() - static method - returns registry
+     * create Person objects that are of type Undergraduate or Professor
+     * or Graduate or AtLarge or only Person since Undergrad, Grad, AtLarge are a Student
+     * and Student and Professor are Person
+     *
+     * create a Registry object and add persons to the registry
+     * Create Relationship objects that takes 2 partners as parameter: Male and Female
+     * create child - person object and add children to those relationships that takes child's firstName, lastName, sex, and set the age
+     * call the endRelationship() method to end some relationships
+     * add children to the registry
+     */
     public static Registry createAndAddPeople() {
         Person p1 = new Undergraduate("Donald", "Draper", "m", 111, "freshman");
         Person p2 = new Undergraduate("Natalie", "Mering", "f", 122, "sophomore");
@@ -91,7 +112,6 @@ public class PersonGroceryStoreGroceryListTester {
         registry.addPerson(p11);
         registry.addPerson(p12);
         registry.addPerson(p13);
-
 
         //Create relationships and add children
         Relationship r1 = new Relationship(p1, p2);
@@ -142,6 +162,10 @@ public class PersonGroceryStoreGroceryListTester {
         return registry;
     }
 
+    /*
+     * registerStudents() - static method - void return type - takes a parameter called Registry
+     * enroll students to courses and if courses are full, add students to course wait list
+     */
     public static void registerStudents(Registry registry) {
         registry.enrollStudent("Donald", "Draper", "COMP", 170);
         registry.enrollStudent("Natalie", "Mering", "COMP", 271);
@@ -149,11 +173,12 @@ public class PersonGroceryStoreGroceryListTester {
         registry.enrollStudent("Lisa", "Simpson", "COMP", 170);
         registry.enrollStudent("Ezra", "Koenig", "COMP", 170);            //duplicate, should be ignored
         registry.enrollStudent("Laura", "Marling", "COMP", 170);
-        registry.enrollStudent("James", "Murphy", "COMP", 170);    //will waitlist
+        registry.enrollStudent("James", "Murphy", "COMP", 170);    //will wait list
         registry.enrollStudent("Leslie", "Knope", "COMP", 272);
         registry.enrollStudent("Lisa", "Simpson", "COMP", 271);
         registry.enrollStudent("Donald", "Draper", "COMP", 271);
     }
+
     public static void main(String[] args) {
         GroceryStoreContainer storesLists = createAndAddGroceryItems();
         Registry registry = createAndAddPeople();
@@ -161,7 +186,7 @@ public class PersonGroceryStoreGroceryListTester {
         registerStudents(registry);
 
         Scanner scan = new Scanner(System.in);
-
+        // asks user's full name and sex and then give the options to choose from
         System.out.println("Welcome to the registry App!");
         System.out.print("Enter your first & last name & sex: ");
         String firstName = scan.next();
@@ -173,6 +198,9 @@ public class PersonGroceryStoreGroceryListTester {
         System.out.print("Would you like to (1) look at ancestry, (2) add/drop a course, or (3) shop? ");
         String response = scan.next().toLowerCase();
 
+        // look at ancestry if user selected option 1
+        // add / drop courses if user selected option 2
+        // shop for groceries from a store if user selected option 3
         if (response.equals("1")) {
                 System.out.println("Maternal Line: " + registry.getMaternalLine(person));
                 System.out.println("Paternal Line: " + registry.getPaternalLine(person));
@@ -267,10 +295,9 @@ public class PersonGroceryStoreGroceryListTester {
                 item = scan.next();
             }
 
-            System.out.println(groceryList);
+            System.out.println("\n" + groceryList);
             double discountedPrice = registry.checkPersonDiscount(person, groceryList);
             System.out.println("Total after discount applied: " + discountedPrice);
         }
     }
 }
-
