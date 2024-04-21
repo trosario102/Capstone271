@@ -171,9 +171,9 @@ public class PersonGroceryStoreGroceryListTester {
         registry.enrollStudent("Natalie", "Mering", "COMP", 271);
         registry.enrollStudent("Ezra", "Koenig", "COMP", 272);
         registry.enrollStudent("Lisa", "Simpson", "COMP", 170);
-        registry.enrollStudent("Ezra", "Koenig", "COMP", 170);            //duplicate, should be ignored
+        registry.enrollStudent("Ezra", "Koenig", "COMP", 170);     
         registry.enrollStudent("Laura", "Marling", "COMP", 170);
-        registry.enrollStudent("James", "Murphy", "COMP", 170);    //will wait list
+        registry.enrollStudent("James", "Murphy", "COMP", 170);
         registry.enrollStudent("Leslie", "Knope", "COMP", 272);
         registry.enrollStudent("Lisa", "Simpson", "COMP", 271);
         registry.enrollStudent("Donald", "Draper", "COMP", 271);
