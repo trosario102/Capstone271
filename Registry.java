@@ -1,4 +1,9 @@
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Comparator;
 
 public class Registry implements User {
     private HashMap<String, Course> courseFinder;
