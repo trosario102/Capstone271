@@ -171,7 +171,7 @@ public class PersonGroceryStoreGroceryListTester {
         registry.enrollStudent("Natalie", "Mering", "COMP", 271);
         registry.enrollStudent("Ezra", "Koenig", "COMP", 272);
         registry.enrollStudent("Lisa", "Simpson", "COMP", 170);
-        registry.enrollStudent("Ezra", "Koenig", "COMP", 170);     
+        registry.enrollStudent("Ezra", "Koenig", "COMP", 170);
         registry.enrollStudent("Laura", "Marling", "COMP", 170);
         registry.enrollStudent("James", "Murphy", "COMP", 170);
         registry.enrollStudent("Leslie", "Knope", "COMP", 272);
@@ -230,9 +230,14 @@ public class PersonGroceryStoreGroceryListTester {
                 }
 
                 for (Course c: student.getMyCourseList()) {
-                    System.out.println("Registered for " + c + ": " + c.getRegistered());
-                    System.out.println("Waitlisted for " + c + ": " + c.getWaitListed());
+                    if (c.getRegistered().contains(student)) {
+                        System.out.println("Successfully registered for " + c);
+                    }
                 }
+                for (Course c: student.getMyWaitList()) {
+                    System.out.println("Waitlisted for " + c);
+                }
+                System.out.println();
 
                 while (true) {
                     System.out.print("Enter the name and number of the course you'd like to drop: ");
@@ -249,6 +254,8 @@ public class PersonGroceryStoreGroceryListTester {
                     registry.removeStudent(person.getFirstName(), person.getFamilyName(), dept, Integer.parseInt(num));
                 }
 
+                System.out.println();
+                System.out.println(person + " 's Registration Summary");
                 System.out.println("Here are your registered courses: " + student.getMyCourseList());
                 System.out.println("Here are your waitlisted courses: " + student.getMyWaitList());
 
