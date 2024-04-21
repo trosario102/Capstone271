@@ -10,7 +10,7 @@ public class Person implements Shopper, Child, Comparable<Person> {
     private Person mother;
     private Set<Relationship> pastRelationships;
     private Relationship relationship;
-    private String sex; // m or f
+    private String sex;
 
     public Person(String firstName, String familyName, String sex) {
         this.age = 0;
@@ -91,7 +91,6 @@ public class Person implements Shopper, Child, Comparable<Person> {
         this.age = n;
     }
     public void setFather(Person p) {
-
         this.father = p;
     }
 
@@ -108,7 +107,11 @@ public class Person implements Shopper, Child, Comparable<Person> {
         this.relationship = r;
     }
 
-
+    /*
+     * Precondition: check that age is greater than 0
+     * Post-condition: if precondition is met, return first & last name and age in String format
+     * else return first and last name
+     */
     public String toString() {
         if (age != 0) {
             return firstName + " " + familyName + " (" + age + ")";
@@ -116,6 +119,11 @@ public class Person implements Shopper, Child, Comparable<Person> {
         return firstName + " " + familyName;
     }
 
+    /*
+     * compareTo imports the Comparable interface
+     * first compares the names and then if names are equal, compare ages and return the age difference
+     * else return String comparison and return the result
+     */
     public int compareTo(Person p) {
         String name1 = this.firstName + " " + this.familyName;
         String name2 = this.firstName + " " + this.familyName;
@@ -127,6 +135,14 @@ public class Person implements Shopper, Child, Comparable<Person> {
         }
     }
 
+    /*
+     * Precondition: check object o is instanceOf Person
+     * check if this first name is equal to parameter other object first name
+     * and if this family name is equal to parameter other object family name
+     *
+     * Overrides the default java equals method
+     * check if two Person objects are equal based on their first name, family name, and sex
+     */
     public boolean equals(Object o) {
         if (o instanceof Person){
             Person p = (Person) o;
