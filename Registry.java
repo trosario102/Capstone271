@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 public class Registry implements User {
     private HashMap<String, Course> courseFinder;
     private ArrayList<Course> courses;
@@ -167,4 +166,3 @@ public class Registry implements User {
     }
 
 }
-
