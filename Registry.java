@@ -122,7 +122,7 @@ public class Registry implements User {
                 System.out.print("Enter your studentID: ");
                 id = scan.nextInt();
                 scan.nextLine();
-                System.out.print("Enter your expected completed date: ");
+                System.out.print("Enter your expected completion date: ");
                 year = scan.nextLine();
                 person = new Graduate(firstName, familyName, sex, id, year);
                 break;
