@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Person implements Shopper, Child, Comparable<Person> {
     private int age;
