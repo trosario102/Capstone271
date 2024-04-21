@@ -16,8 +16,13 @@ public class Student extends Person {
     }
 
     /*
- Precondition: check if the same student is not adding the same course again
- Postcondition: Each student can only add a particular course only one time
+     * Precondition: check if the same student is not adding the same course again, if course is not null
+     * and size of myCourseList is less than or equal to course max capacity
+     * check if the course has enough space to add other students
+     *
+     * Postcondition: Each student can only add a particular course only one time
+     * if student has space in myCourseList and if a particular course has space to add other students
+     * add course to student courseList
   */
     public void addCourse(Course course) {
         if (!myCourseList.contains(course) && course != null && myCourseList.size() <= course.getMaxCapacity()) {
@@ -34,6 +39,10 @@ public class Student extends Person {
         return true;
     }
 
+    /*
+     * Pre-condition: check if a course students want to drop contains in myCourseList
+     * Post-condition: remove that course from myCourseList and remove the student from the course roster
+     */
     public void dropCourse(Course course) {
         if (myCourseList.contains(course)) {
             myCourseList.remove(course);
@@ -41,6 +50,11 @@ public class Student extends Person {
         }
     }
 
+    /*
+     * Pre-condition: check if myWaitList contains the course
+     * it precondition is true, remove the course from student wait list, return true
+     * else return false
+     */
     public boolean dropFromWaitList(Course c) {
         if (myWaitList.contains(c)) {
             myWaitList.remove(c);
@@ -61,6 +75,11 @@ public class Student extends Person {
         return myWaitList;
     }
 
+    /*
+     * calls the compareTo method of the superclass (Person) and checks if
+     * it equals 0, indicating equal superclass attributes then return the difference of this.id - other.id
+     *  else if superclass attributes are not equals, return superclass Person class compareTo
+     */
     public int compareTo(Student other) {
         if (super.compareTo(other) == 0) {
             return this.id - other.id;
@@ -68,5 +87,4 @@ public class Student extends Person {
             return super.compareTo(other);
         }
     }
-
 }
